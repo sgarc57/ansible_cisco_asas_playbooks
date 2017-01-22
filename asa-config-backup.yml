@@ -1,0 +1,9 @@
+---
+- name: Cisco ASA config backup
+  hosts: baseasa
+  asa_config:
+    backup: yes
+    authorize: yes
+    auth_pass: cisco
+    username: admin
+    password: cisco

@@ -1,0 +1,28 @@
+---
+- name: Asa command testing
+  hosts: baseasa
+  vars:
+    cli:
+      username: admin
+      password: cisco
+      authorize: yes
+      auth_pass: cisco
+      transport: cli
+  tasks:
+
+  - name: Run a Test ASA command
+    remote_user: admin
+    asa_command:
+      commands:
+        - show version
+      provider: "{{ cli }}"
+#     These can be used if 'vars' above is not perfered
+#      authorize: yes
+#      auth_pass: cisco
+#      username: admin
+#      password: cisco
+      host: baseasa1.lmx.co.nz
+    register: asa_command_reg
+
+  - name: Debug output
+    debug: var=asa_command_reg
