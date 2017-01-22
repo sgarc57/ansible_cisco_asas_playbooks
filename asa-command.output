@@ -1,0 +1,202 @@
+Using /etc/ansible/ansible.cfg as config file
+
+PLAYBOOK: asa-command-test.yml *************************************************
+1 plays in asa-command-test.yml
+
+PLAY [Asa command testing] *****************************************************
+
+TASK [setup] *******************************************************************
+Using module file /usr/lib/python2.7/site-packages/ansible/modules/core/system/setup.py
+<192.168.55.1> ESTABLISH LOCAL CONNECTION FOR USER: admin
+<192.168.55.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo $HOME/.ansible/tmp/ansible-tmp-1485051717.79-235589451653045 `" && echo ansible-tmp-1485051717.79-235589451653045="` echo $HOME/.ansible/tmp/ansible-tmp-1485051717.79-235589451653045 `" ) && sleep 0'
+<192.168.55.1> PUT /tmp/tmpe4WpGR TO /home/admin/.ansible/tmp/ansible-tmp-1485051717.79-235589451653045/setup.py
+<192.168.55.1> EXEC /bin/sh -c 'chmod u+x /home/admin/.ansible/tmp/ansible-tmp-1485051717.79-235589451653045/ /home/admin/.ansible/tmp/ansible-tmp-1485051717.79-235589451653045/setup.py && sleep 0'
+<192.168.55.1> EXEC /bin/sh -c '/usr/bin/python /home/admin/.ansible/tmp/ansible-tmp-1485051717.79-235589451653045/setup.py; rm -rf "/home/admin/.ansible/tmp/ansible-tmp-1485051717.79-235589451653045/" > /dev/null 2>&1 && sleep 0'
+ok: [baseasa1]
+
+TASK [Run a Test ASA command] **************************************************
+task path: /opt/playbooks/asa-command-test.yml:13
+Using module file /usr/lib/python2.7/site-packages/ansible/modules/extras/network/asa/asa_command.py
+<192.168.55.1> ESTABLISH LOCAL CONNECTION FOR USER: admin
+<192.168.55.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo $HOME/.ansible/tmp/ansible-tmp-1485051719.39-118352205358871 `" && echo ansible-tmp-1485051719.39-118352205358871="` echo $HOME/.ansible/tmp/ansible-tmp-1485051719.39-118352205358871 `" ) && sleep 0'
+<192.168.55.1> PUT /tmp/tmpZt64bE TO /home/admin/.ansible/tmp/ansible-tmp-1485051719.39-118352205358871/asa_command.py
+<192.168.55.1> EXEC /bin/sh -c 'chmod u+x /home/admin/.ansible/tmp/ansible-tmp-1485051719.39-118352205358871/ /home/admin/.ansible/tmp/ansible-tmp-1485051719.39-118352205358871/asa_command.py && sleep 0'
+<192.168.55.1> EXEC /bin/sh -c '/usr/bin/python /home/admin/.ansible/tmp/ansible-tmp-1485051719.39-118352205358871/asa_command.py; rm -rf "/home/admin/.ansible/tmp/ansible-tmp-1485051719.39-118352205358871/" > /dev/null 2>&1 && sleep 0'
+ok: [baseasa1] => {
+    "changed": false, 
+    "invocation": {
+        "module_args": {
+            "auth_pass": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER", 
+            "authorize": true, 
+            "commands": [
+                "show version"
+            ], 
+            "context": null, 
+            "host": "baseasa1.lmx.co.nz", 
+            "interval": 1, 
+            "match": "all", 
+            "password": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER", 
+            "port": null, 
+            "provider": {
+                "auth_pass": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER", 
+                "authorize": true, 
+                "password": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER", 
+                "transport": "cli", 
+                "username": "admin"
+            }, 
+            "retries": 10, 
+            "ssh_keyfile": null, 
+            "timeout": 10, 
+            "transport": "cli", 
+            "username": "admin", 
+            "wait_for": null
+        }, 
+        "module_name": "asa_command"
+    }, 
+    "stdout": [
+        "\nCisco Adaptive Security Appliance Software Version 8.2(5)59 \nDevice Manager Version 6.3(3)\n\nCompiled on Fri 12-Feb-16 11:35 by builders\nSystem image file is \"disk0:/asa825-59-k8.bin\"\nConfig file at boot was \"startup-config\"\n\nBASEASA1 up 341 days 13 hours\n\nHardware:   ASA5505, 256 MB RAM, CPU Geode 500 MHz\nInternal ATA Compact Flash, 128MB\nBIOS Flash M50FW080 @ 0xffe00000, 1024KB\n\nEncryption hardware device : Cisco ASA-5505 on-board accelerator (revision 0x0)\n                             Boot microcode   : CN1000-MC-BOOT-2.00 \n                             SSL/IKE microcode: CNLite-MC-SSLm-PLUS-2.03\n                             IPSec microcode  : CNlite-MC-IPSECm-MAIN-2.05\n\n 0: Int: Internal-Data0/0    : address is 0021.5595.7a68, irq 11\n 1: Ext: Ethernet0/0         : address is 0021.5595.7a60, irq 255\n 2: Ext: Ethernet0/1         : address is 0021.5595.7a61, irq 255\n 3: Ext: Ethernet0/2         : address is 0021.5595.7a62, irq 255\n 4: Ext: Ethernet0/3         : address is 0021.5595.7a63, irq 255\n 5: Ext: Ethernet0/4         : address is 0021.5595.7a64, irq 255\n 6: Ext: Ethernet0/5         : address is 0021.5595.7a65, irq 255\n 7: Ext: Ethernet0/6         : address is 0021.5595.7a66, irq 255\n 8: Ext: Ethernet0/7         : address is 0021.5595.7a67, irq 255\n 9: Int: Internal-Data0/1    : address is 0000.0003.0002, irq 255\n10: Int: Not used            : irq 255\n11: Int: Not used            : irq 255\n\nLicensed features for this platform:\nMaximum Physical Interfaces    : 8         \nVLANs                          : 20, DMZ Unrestricted\nInside Hosts                   : Unlimited \nFailover                       : Active/Standby\nVPN-DES                        : Enabled   \nVPN-3DES-AES                   : Enabled   \nSSL VPN Peers                  : 25        \nTotal VPN Peers                : 25        \nDual ISPs                      : Enabled   \nVLAN Trunk Ports               : 8         \nShared License                 : Enabled\nAnyConnect for Mobile          : Enabled   \nAnyConnect for Cisco VPN Phone : Enabled   \nAnyConnect Essentials          : Enabled   \nAdvanced Endpoint Assessment   : Enabled   \nUC Phone Proxy Sessions        : 24        \nTotal UC Proxy Sessions        : 24        \nBotnet Traffic Filter          : Enabled   \n\nThis platform has an ASA 5505 Security Plus license.\n\nSerial Number: JMX1218Z3CM\nRunning Activation Key: 0x6500ef77 0xbc23d4a5 0x95410498 0xe3fc74cc 0x8f2cedab \nConfiguration register is 0x1\nConfiguration last modified by enable_15 at 23:17:03.679 pacific Fri Jan 13 2017\n"
+    ], 
+    "stdout_lines": [
+        [
+            "", 
+            "Cisco Adaptive Security Appliance Software Version 8.2(5)59 ", 
+            "Device Manager Version 6.3(3)", 
+            "", 
+            "Compiled on Fri 12-Feb-16 11:35 by builders", 
+            "System image file is \"disk0:/asa825-59-k8.bin\"", 
+            "Config file at boot was \"startup-config\"", 
+            "", 
+            "BASEASA1 up 341 days 13 hours", 
+            "", 
+            "Hardware:   ASA5505, 256 MB RAM, CPU Geode 500 MHz", 
+            "Internal ATA Compact Flash, 128MB", 
+            "BIOS Flash M50FW080 @ 0xffe00000, 1024KB", 
+            "", 
+            "Encryption hardware device : Cisco ASA-5505 on-board accelerator (revision 0x0)", 
+            "                             Boot microcode   : CN1000-MC-BOOT-2.00 ", 
+            "                             SSL/IKE microcode: CNLite-MC-SSLm-PLUS-2.03", 
+            "                             IPSec microcode  : CNlite-MC-IPSECm-MAIN-2.05", 
+            "", 
+            " 0: Int: Internal-Data0/0    : address is 0021.5595.7a68, irq 11", 
+            " 1: Ext: Ethernet0/0         : address is 0021.5595.7a60, irq 255", 
+            " 2: Ext: Ethernet0/1         : address is 0021.5595.7a61, irq 255", 
+            " 3: Ext: Ethernet0/2         : address is 0021.5595.7a62, irq 255", 
+            " 4: Ext: Ethernet0/3         : address is 0021.5595.7a63, irq 255", 
+            " 5: Ext: Ethernet0/4         : address is 0021.5595.7a64, irq 255", 
+            " 6: Ext: Ethernet0/5         : address is 0021.5595.7a65, irq 255", 
+            " 7: Ext: Ethernet0/6         : address is 0021.5595.7a66, irq 255", 
+            " 8: Ext: Ethernet0/7         : address is 0021.5595.7a67, irq 255", 
+            " 9: Int: Internal-Data0/1    : address is 0000.0003.0002, irq 255", 
+            "10: Int: Not used            : irq 255", 
+            "11: Int: Not used            : irq 255", 
+            "", 
+            "Licensed features for this platform:", 
+            "Maximum Physical Interfaces    : 8         ", 
+            "VLANs                          : 20, DMZ Unrestricted", 
+            "Inside Hosts                   : Unlimited ", 
+            "Failover                       : Active/Standby", 
+            "VPN-DES                        : Enabled   ", 
+            "VPN-3DES-AES                   : Enabled   ", 
+            "SSL VPN Peers                  : 25        ", 
+            "Total VPN Peers                : 25        ", 
+            "Dual ISPs                      : Enabled   ", 
+            "VLAN Trunk Ports               : 8         ", 
+            "Shared License                 : Enabled", 
+            "AnyConnect for Mobile          : Enabled   ", 
+            "AnyConnect for Cisco VPN Phone : Enabled   ", 
+            "AnyConnect Essentials          : Enabled   ", 
+            "Advanced Endpoint Assessment   : Enabled   ", 
+            "UC Phone Proxy Sessions        : 24        ", 
+            "Total UC Proxy Sessions        : 24        ", 
+            "Botnet Traffic Filter          : Enabled   ", 
+            "", 
+            "This platform has an ASA 5505 Security Plus license.", 
+            "", 
+            "Serial Number: JMX1218Z3CM", 
+            "Running Activation Key: 0x6500ef77 0xbc23d4a5 0x95410498 0xe3fc74cc 0x8f2cedab ", 
+            "Configuration register is 0x1", 
+            "Configuration last modified by enable_15 at 23:17:03.679 pacific Fri Jan 13 2017", 
+            ""
+        ]
+    ], 
+    "warnings": []
+}
+
+TASK [Debug output] ************************************************************
+task path: /opt/playbooks/asa-command-test.yml:27
+ok: [baseasa1] => {
+    "asa_command_reg": {
+        "changed": false, 
+        "stdout": [
+            "\nCisco Adaptive Security Appliance Software Version 8.2(5)59 \nDevice Manager Version 6.3(3)\n\nCompiled on Fri 12-Feb-16 11:35 by builders\nSystem image file is \"disk0:/asa825-59-k8.bin\"\nConfig file at boot was \"startup-config\"\n\nBASEASA1 up 341 days 13 hours\n\nHardware:   ASA5505, 256 MB RAM, CPU Geode 500 MHz\nInternal ATA Compact Flash, 128MB\nBIOS Flash M50FW080 @ 0xffe00000, 1024KB\n\nEncryption hardware device : Cisco ASA-5505 on-board accelerator (revision 0x0)\n                             Boot microcode   : CN1000-MC-BOOT-2.00 \n                             SSL/IKE microcode: CNLite-MC-SSLm-PLUS-2.03\n                             IPSec microcode  : CNlite-MC-IPSECm-MAIN-2.05\n\n 0: Int: Internal-Data0/0    : address is 0021.5595.7a68, irq 11\n 1: Ext: Ethernet0/0         : address is 0021.5595.7a60, irq 255\n 2: Ext: Ethernet0/1         : address is 0021.5595.7a61, irq 255\n 3: Ext: Ethernet0/2         : address is 0021.5595.7a62, irq 255\n 4: Ext: Ethernet0/3         : address is 0021.5595.7a63, irq 255\n 5: Ext: Ethernet0/4         : address is 0021.5595.7a64, irq 255\n 6: Ext: Ethernet0/5         : address is 0021.5595.7a65, irq 255\n 7: Ext: Ethernet0/6         : address is 0021.5595.7a66, irq 255\n 8: Ext: Ethernet0/7         : address is 0021.5595.7a67, irq 255\n 9: Int: Internal-Data0/1    : address is 0000.0003.0002, irq 255\n10: Int: Not used            : irq 255\n11: Int: Not used            : irq 255\n\nLicensed features for this platform:\nMaximum Physical Interfaces    : 8         \nVLANs                          : 20, DMZ Unrestricted\nInside Hosts                   : Unlimited \nFailover                       : Active/Standby\nVPN-DES                        : Enabled   \nVPN-3DES-AES                   : Enabled   \nSSL VPN Peers                  : 25        \nTotal VPN Peers                : 25        \nDual ISPs                      : Enabled   \nVLAN Trunk Ports               : 8         \nShared License                 : Enabled\nAnyConnect for Mobile          : Enabled   \nAnyConnect for Cisco VPN Phone : Enabled   \nAnyConnect Essentials          : Enabled   \nAdvanced Endpoint Assessment   : Enabled   \nUC Phone Proxy Sessions        : 24        \nTotal UC Proxy Sessions        : 24        \nBotnet Traffic Filter          : Enabled   \n\nThis platform has an ASA 5505 Security Plus license.\n\nSerial Number: JMX1218Z3CM\nRunning Activation Key: 0x6500ef77 0xbc23d4a5 0x95410498 0xe3fc74cc 0x8f2cedab \nConfiguration register is 0x1\nConfiguration last modified by enable_15 at 23:17:03.679 pacific Fri Jan 13 2017\n"
+        ], 
+        "stdout_lines": [
+            [
+                "", 
+                "Cisco Adaptive Security Appliance Software Version 8.2(5)59 ", 
+                "Device Manager Version 6.3(3)", 
+                "", 
+                "Compiled on Fri 12-Feb-16 11:35 by builders", 
+                "System image file is \"disk0:/asa825-59-k8.bin\"", 
+                "Config file at boot was \"startup-config\"", 
+                "", 
+                "BASEASA1 up 341 days 13 hours", 
+                "", 
+                "Hardware:   ASA5505, 256 MB RAM, CPU Geode 500 MHz", 
+                "Internal ATA Compact Flash, 128MB", 
+                "BIOS Flash M50FW080 @ 0xffe00000, 1024KB", 
+                "", 
+                "Encryption hardware device : Cisco ASA-5505 on-board accelerator (revision 0x0)", 
+                "                             Boot microcode   : CN1000-MC-BOOT-2.00 ", 
+                "                             SSL/IKE microcode: CNLite-MC-SSLm-PLUS-2.03", 
+                "                             IPSec microcode  : CNlite-MC-IPSECm-MAIN-2.05", 
+                "", 
+                " 0: Int: Internal-Data0/0    : address is 0021.5595.7a68, irq 11", 
+                " 1: Ext: Ethernet0/0         : address is 0021.5595.7a60, irq 255", 
+                " 2: Ext: Ethernet0/1         : address is 0021.5595.7a61, irq 255", 
+                " 3: Ext: Ethernet0/2         : address is 0021.5595.7a62, irq 255", 
+                " 4: Ext: Ethernet0/3         : address is 0021.5595.7a63, irq 255", 
+                " 5: Ext: Ethernet0/4         : address is 0021.5595.7a64, irq 255", 
+                " 6: Ext: Ethernet0/5         : address is 0021.5595.7a65, irq 255", 
+                " 7: Ext: Ethernet0/6         : address is 0021.5595.7a66, irq 255", 
+                " 8: Ext: Ethernet0/7         : address is 0021.5595.7a67, irq 255", 
+                " 9: Int: Internal-Data0/1    : address is 0000.0003.0002, irq 255", 
+                "10: Int: Not used            : irq 255", 
+                "11: Int: Not used            : irq 255", 
+                "", 
+                "Licensed features for this platform:", 
+                "Maximum Physical Interfaces    : 8         ", 
+                "VLANs                          : 20, DMZ Unrestricted", 
+                "Inside Hosts                   : Unlimited ", 
+                "Failover                       : Active/Standby", 
+                "VPN-DES                        : Enabled   ", 
+                "VPN-3DES-AES                   : Enabled   ", 
+                "SSL VPN Peers                  : 25        ", 
+                "Total VPN Peers                : 25        ", 
+                "Dual ISPs                      : Enabled   ", 
+                "VLAN Trunk Ports               : 8         ", 
+                "Shared License                 : Enabled", 
+                "AnyConnect for Mobile          : Enabled   ", 
+                "AnyConnect for Cisco VPN Phone : Enabled   ", 
+                "AnyConnect Essentials          : Enabled   ", 
+                "Advanced Endpoint Assessment   : Enabled   ", 
+                "UC Phone Proxy Sessions        : 24        ", 
+                "Total UC Proxy Sessions        : 24        ", 
+                "Botnet Traffic Filter          : Enabled   ", 
+                "", 
+                "This platform has an ASA 5505 Security Plus license.", 
+                "", 
+                "Serial Number: JMX1218Z3CM", 
+                "Running Activation Key: 0x6500ef77 0xbc23d4a5 0x95410498 0xe3fc74cc 0x8f2cedab ", 
+                "Configuration register is 0x1", 
+                "Configuration last modified by enable_15 at 23:17:03.679 pacific Fri Jan 13 2017", 
+                ""
+            ]
+        ], 
+        "warnings": []
+    }
+}
+
+PLAY RECAP *********************************************************************
+baseasa1                   : ok=3    changed=0    unreachable=0    failed=0   
+
