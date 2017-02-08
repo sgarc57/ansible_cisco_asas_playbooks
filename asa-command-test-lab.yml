@@ -1,0 +1,28 @@
+---
+- name: Asa command testing
+  hosts: labasa
+  vars:
+    cli:
+      username: admin
+      password: Saveme123
+      authorize: yes
+      auth_pass: Saveme123
+      transport: cli
+      host: 172.16.2.42
+  tasks:
+
+  - name: Run a Test ASA command
+    asa_command:
+      commands:
+        - show version
+      provider: "{{ cli }}"
+#     These can be used if 'vars' above is not perfered
+#      authorize: yes
+#      auth_pass: Saveme123
+#      username: admin
+#      password: Saveme123
+#      host: "{{ labasa }}"
+    register: asa_command_reg
+
+  - name: Debug output
+    debug: var=asa_command_reg
