@@ -1,0 +1,9 @@
+[labasa]
+172.16.2.42 ansible_user=admin
+172.16.2.43 ansible_user=admin
+
+[labasa:vars]
+ansible_user=admin
+ansible_ssh_user=admin
+ansible_connection=local
+username=admin
